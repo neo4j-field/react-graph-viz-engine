@@ -10,14 +10,20 @@
               "__typename": "Actor",
               "ID": 2,
               "name": "Scott Grimes",
-              "born": null,
-              "__type": "outgoing"
+              "born": null
             },
             {
               "__typename": "Actor",
               "ID": 3,
               "name": "Ron Livingston",
-              "born": "1967-06-05"
+              "born": "1967-06-05",
+              "pets": [
+                  {
+                    "__typename": "Horse",
+                  "ID": 4,
+                  "name": "Little Thunder"
+                }
+              ] 
             }
           ]
         }
