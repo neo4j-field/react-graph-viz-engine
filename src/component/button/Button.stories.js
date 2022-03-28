@@ -2,7 +2,9 @@
 
 import React from 'react';
 
+import { jsxDecorator } from "storybook-addon-jsx";
 import Button  from './Button';
+
 
 export default {
     /* 👇 The title prop is optional.
@@ -11,6 +13,7 @@ export default {
     */
     title: 'Button',
     component: Button,
+    decorators: [jsxDecorator]
   };
   
   //👇 We create a “template” of how args map to rendering
@@ -19,6 +22,6 @@ export default {
   //👇 Each story then reuses that template
   export const Primary = Template.bind({});
   Primary.args = {
-     primary: true,
+     disabled: false,
      label: 'Button',
   };
