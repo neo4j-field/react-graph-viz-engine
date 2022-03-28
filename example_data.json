@@ -1,0 +1,25 @@
+{
+    "data": {
+      "movies": [
+        {
+          "__typename": "Movie",
+          "ID": 1,
+          "title": "Band of Brothers",
+          "actors": [
+            {
+              "__typename": "Actor",
+              "ID": 2,
+              "name": "Scott Grimes",
+              "born": null
+            },
+            {
+              "__typename": "Actor",
+              "ID": 3,
+              "name": "Ron Livingston",
+              "born": "1967-06-05"
+            }
+          ]
+        }
+      ]
+    }
+  }
