@@ -10,7 +10,8 @@
               "__typename": "Actor",
               "ID": 2,
               "name": "Scott Grimes",
-              "born": null
+              "born": null,
+              "__type": "outgoing"
             },
             {
               "__typename": "Actor",

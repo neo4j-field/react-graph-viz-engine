@@ -1,5 +1,16 @@
-// /.storybook/main.js
+const path = require('path');
+
 module.exports = {
-    stories: ['../src/component/**/*.stories.[tj]s'],
-    addons: ['@storybook/addon-controls/register', 'storybook-addon-jsx']
-}
+  stories: ['../src/component/**/*.stories.tsx'],
+  addons: ['@storybook/addon-controls/register', 'storybook-addon-jsx'],
+  webpackFinal: async (config, { configType }) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: path.resolve(__dirname, '../src'),
+    });
+
+    return config;
+  }
+
+};
