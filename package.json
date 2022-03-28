@@ -1,0 +1,24 @@
+{
+  "name": "react-graph-viz-engine",
+  "version": "0.0.1",
+  "description": "React component for visualizing graph data",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neo4j-field/react-graph-viz-engine.git"
+  },
+  "keywords": [
+    "neo4j",
+    "graph",
+    "visualization"
+  ],
+  "author": "Neo4j Field",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/neo4j-field/react-graph-viz-engine/issues"
+  },
+  "homepage": "https://github.com/neo4j-field/react-graph-viz-engine#readme"
+}
