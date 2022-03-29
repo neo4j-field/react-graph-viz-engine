@@ -47,7 +47,6 @@ function parseNodesFromDict(dict: object): GraphNode {
                     // Parse node (recursively)
                     console.log("Parsing : " + _key);
                     var _node = parseNodesFromDict(nestedObject);
-                    nodes.push(_node);
                     // Add relationship, with source and target id
                     edges.push(new GraphEdge(uuidv4(), node.id, _node.id));
                 });
@@ -56,7 +55,6 @@ function parseNodesFromDict(dict: object): GraphNode {
                 // TODO = Exclude non-nested objects like date/datetime
                 // Parse node and add it to nodes
                 var _node = parseNodesFromDict(_value);
-                nodes.push(_node);
                 // Add relationship, with source and target id
                 edges.push(new GraphEdge(uuidv4(), node.id, _node.id));
             }
@@ -69,6 +67,7 @@ function parseNodesFromDict(dict: object): GraphNode {
         }
     }
     node.properties = _properties;
+    nodes.push(node);
     return node;
 }
 
@@ -85,6 +84,5 @@ export function parseData(data: object): [GraphNode[], GraphEdge[]] {
             parseNodesFromDict(dict);
         });
     }
-    console.log(nodes)
     return [nodes, edges];
 }
