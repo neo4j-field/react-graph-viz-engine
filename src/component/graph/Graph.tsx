@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import CytoscapeComponent from 'react-cytoscapejs';
 import './Graph.css';
 import cytoscape from 'cytoscape';
 import "cytoscape-navigator/cytoscape.js-navigator.css";
 
+// Configuration for the graph navigator window on the bottom right of the screen.
 var defaults = {
     container: false // html dom element
   , viewLiveFramerate: 0 // set false to update graph pan only on drag end; set 0 to do it instantly; set a number (frames per second) to update not more than N times per second

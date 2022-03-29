@@ -1,3 +1,8 @@
 p {
     background-color: lightcoral;
 }
+
+.center-center {
+    text-valign: center;
+    text-halign: center;
+}

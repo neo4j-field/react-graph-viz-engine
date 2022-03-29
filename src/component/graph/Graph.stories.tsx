@@ -4,13 +4,13 @@ import { jsxDecorator } from "storybook-addon-jsx";
 import Graph from './Graph';
 
 const ELEMENTS = [
-   { data: { id: 'one', label: 'Node 1' }, position: { x: 200, y: 200 } },
+   { data: { id: 'one', label: 'Node 1', classes: 'center-center' }, position: { x: 200, y: 200 } },
    { data: { id: 'two', label: 'Node 2' }, position: { x: 100, y: 100 } },
    { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
 ];
 
 const ELEMENTS_SECONDARY = [
-   { data: { id: 'one', label: 'Node 1' }, position: { x: 200, y: 200 } },
+   { data: { id: 'one', label: 'Node 1' ,  classes: 'center-center' }, position: { x: 200, y: 200 } },
    { data: { id: 'two', label: 'Node 2' }, position: { x: 100, y: 100 } },
    { data: { id: 'three', label: 'Node 3' }, position: { x: 300, y: 100 } },
    { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } },
