@@ -45,7 +45,6 @@ function parseNodesFromDict(dict: object): GraphNode {
             if (Array.isArray(_value) && _value.every(isObj)) {
                 _value.forEach(function (nestedObject) {
                     // Parse node (recursively)
-                    console.log("Parsing : " + _key);
                     var _node = parseNodesFromDict(nestedObject);
                     // Add relationship, with source and target id
                     edges.push(new GraphEdge(uuidv4(), node.id, _node.id));
@@ -77,7 +76,6 @@ export function parseData(data: object): [GraphNode[], GraphEdge[]] {
 
     // Iterate first level - These are nodes
     for (var [key, value] of Object.entries(data["data"])) {
-        console.log("Parsing : " + key);
         // Iterate over the top-level nodes
         // @ts-ignore
         value.forEach(function (dict: object) {
