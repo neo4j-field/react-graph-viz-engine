@@ -4,6 +4,8 @@ import cytoscape from 'cytoscape';
 import euler from 'cytoscape-euler';
 
 import "cytoscape-navigator/cytoscape.js-navigator.css";
+import { parseData } from '../../util/parser/parser';
+import { formatData } from '../../util/formatter/cytoscape';
 
 // Configuration for the graph navigator window on the bottom right of the screen.
 let navigatorSettings = {
@@ -114,11 +116,12 @@ let layoutSettings = {
 
 var navigator = require('cytoscape-navigator');
 
-const GraphVisualization = ({ elements = [], disabled = false }) => {
+const GraphVisualization = ({ data = [], disabled = false }) => {
     const [ref, setRef] = useState(undefined);
 
     if(ref){
         navigator( cytoscape ); // register extension
+
         var cy = cytoscape({ container: ref,
             style: [
                 {
@@ -131,11 +134,11 @@ const GraphVisualization = ({ elements = [], disabled = false }) => {
               
 
         cytoscape.use( euler );
-        
-        var eles = cy.add(elements);  
+        var parsedData = parseData(data);
+        var formattedData = formatData(parsedData);
+        var eles = cy.add(formattedData);  
         cy.layout( layoutSettings ).run();  
         var nav = cy.navigator( navigatorSettings ); // get navigator instance, nav
-      
     }
 
     return <div style={{ width: "100%", height: "500px" }}>
