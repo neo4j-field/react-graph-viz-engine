@@ -3,11 +3,40 @@ import React from 'react';
 import { jsxDecorator } from "storybook-addon-jsx";
 import Graph from './Graph';
 
-const ELEMENTS = [
-   { data: { id: 'one', label: 'Node 1', classes: 'center-center' }},
-   { data: { id: 'two', label: 'Node 2' }},
-   { data: { source: 'one', target: 'two', label: 'Edge from Node1 to Node2' } }
-];
+const ELEMENTS =
+   {
+      "data": {
+        "movies": [
+          {
+            "__typename": "Movie",
+            "ID": 1,
+            "title": "Band of Brothers",
+            "actors": [
+              {
+                "__typename": "Actor",
+                "ID": 2,
+                "name": "Scott Grimes",
+                "born": null
+              },
+              {
+                "__typename": "Actor",
+                "ID": 3,
+                "name": "Ron Livingston",
+                "born": "1967-06-05",
+                "pets": [
+                    {
+                      "__typename": "Horse",
+                    "ID": 4,
+                    "name": "Little Thunder"
+                  }
+                ] 
+              }
+            ]
+          }
+        ]
+      }
+    }
+;
 
 const ELEMENTS_SECONDARY = [
    { data: { id: 'one', label: 'Node 1' ,  classes: 'center-center' } },
@@ -38,7 +67,7 @@ export const Primary = Template.bind({});
 Primary.args = {
    showNavigator: false,
    layout: 'euler',
-   elements: ELEMENTS
+   data: ELEMENTS
 };
 
 export const Secondary = Template.bind({});
