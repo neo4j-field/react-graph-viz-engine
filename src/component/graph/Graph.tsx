@@ -7,7 +7,7 @@ import "cytoscape-navigator/cytoscape.js-navigator.css";
 
 // Configuration for the graph navigator window on the bottom right of the screen.
 let navigatorSettings = {
-    container: false // html dom element
+    container: "#navigator" // html dom element
   , viewLiveFramerate: 0 // set false to update graph pan only on drag end; set 0 to do it instantly; set a number (frames per second) to update not more than N times per second
   , thumbnailEventFramerate: 30 // max thumbnail's updates per second triggered by graph updates
   , thumbnailLiveFramerate: false // max thumbnail's updates per second. Set false to disable
@@ -17,8 +17,7 @@ let navigatorSettings = {
 };
 
 let layoutSettings = {
-    name: 'euler',
-  
+
     // The ideal length of a spring
     // - This acts as a hint for the edge length
     // - The edge length can be longer or shorter if the forces are set to extreme values
@@ -69,7 +68,7 @@ let layoutSettings = {
     // - true : Animate while the layout is running
     // - false : Just show the end result
     // - 'end' : Animate directly to the end result
-    animate: true,
+    animate: false,
   
     // Animation duration used for animate:'end'
     animationDuration: undefined,
@@ -114,31 +113,53 @@ let layoutSettings = {
 
 var navigator = require('cytoscape-navigator');
 
-const GraphVisualization = ({ elements = [], disabled = false }) => {
+const GraphVisualization = ({ elements = [], layout = 'euler', showNavigator = false }) => {
     const [ref, setRef] = useState(undefined);
 
     if(ref){
-        navigator( cytoscape ); // register extension
+
         var cy = cytoscape({ container: ref,
+            
             style: [
                 {
                   selector: 'node',
                   style: {
                     'label': 'data(id)'
                   }
+                },
+                {
+                    selector: ".center-center",
+                    style: {
+                        "background": "black",
+                      "text-valign": "center",
+                      "text-halign": "center"
+                    }
                 }
               ] });
               
 
         cytoscape.use( euler );
-        
         var eles = cy.add(elements);  
-        cy.layout( layoutSettings ).run();  
-        var nav = cy.navigator( navigatorSettings ); // get navigator instance, nav
+        cy.layout( {...layoutSettings, name: layout}).run();  
+
+        /**
+         * Handles rendering the navigator window on the bottom right of the screen.
+         */
+        if(showNavigator){
+            cytoscape.use(navigator);
+            let nav = cy.navigator( navigatorSettings ); // get navigator instance, nav
+        }else{
+            const div = document.getElementById("navigator");
+            if(div){
+                div.innerHTML = '';
+            }
+        }
+
       
     }
 
     return <div style={{ width: "100%", height: "500px" }}>
+        <div style={{width: 300, height: 200, position: 'absolute', right: 0, bottom: 0, overflow: 'hidden'}}id="navigator"></div>
       <div id="cy" ref={(cyRef) => { setRef(cyRef); }} style={{ width: "100%", height: "100%" }}> </div>
      </div>
 }

@@ -20,7 +20,13 @@ const ELEMENTS_SECONDARY = [
 export default {
    title: 'Graph',
    component: Graph,
-   decorators: [jsxDecorator]
+   decorators: [jsxDecorator],
+   argTypes: {
+      layout: {
+        options: ['euler', 'grid'],
+        control: { type: 'select' },
+      },
+    },
 };
 
 //👇 We create a “template” of how args map to rendering
@@ -30,14 +36,14 @@ const Template = (args) => <Graph {...args} />;
 //👇 Each story then reuses that template
 export const Primary = Template.bind({});
 Primary.args = {
-   disabled: false,
-   label: 'Graph 1',
+   showNavigator: false,
+   layout: 'euler',
    elements: ELEMENTS
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-   disabled: false,
-   label: 'Graph 2',
+   showNavigator: true,
+   layout: 'euler',
    elements: ELEMENTS_SECONDARY 
 };
