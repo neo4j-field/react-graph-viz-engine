@@ -8,6 +8,7 @@ import { parseData } from '../../util/parser/parser';
 import { formatData } from '../../util/formatter/cytoscape';
 import { fetchGraphQLDataJSON } from '../../util/data/fetch' 
 import { layoutSettings, navigatorSettings } from './GraphConfig';
+import { mapConfig } from '../../util/configmapper/cytoscape';
 
 
 var navigator = require('cytoscape-navigator');
@@ -24,7 +25,7 @@ const GraphVisualization = ({ data = undefined,
 
         var cy = cytoscape({
             container: ref,
-            style: getStyle()
+            style: getStyle(config)
         });
 
         cytoscape.use(euler);
@@ -66,22 +67,7 @@ const GraphVisualization = ({ data = undefined,
 
 export default GraphVisualization;
 
-function getStyle() {
-    return [
-        {
-            selector: 'node',
-            style: {
-                'label': 'data(id)'
-            }
-        },
-        {
-            selector: ".center-center",
-            style: {
-                "background": "black",
-                "text-valign": "center",
-                "text-halign": "center"
-            }
-        }
-    ];
+function getStyle(config: object) {
+    return mapConfig(config);
 }
 

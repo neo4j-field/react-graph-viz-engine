@@ -74,13 +74,37 @@ LiveGraphQL.args = {
         __typename
         name
         acted_in {
+          __typename
           title
           genres {
+            __typename
             name
           }
         }
       }
-   }`
+   }`,
+   config: {
+      nodeCaption:{
+         Movie: "title",
+         Actor: "name",
+         Genre: "name"
+      },
+      nodeColor:{
+         Movie: "red",
+         Actor: "blue",
+         Genre: "green"
+      },
+      nodeSize:{
+         Movie: 40,
+         Actor: 20,
+         Genre: 30
+      },
+      nodeCaptionSize:{
+         Movie: 15,
+         Actor: 15,
+         Genre: 15
+      }
+   }
 };
 
 export const DummyData = Template.bind({});
