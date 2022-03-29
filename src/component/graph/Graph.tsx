@@ -21,7 +21,15 @@ const GraphVisualization = ({ elements = [], disabled = false }) => {
 
     if(ref){
         navigator( cytoscape ); // register extension
-        var cy = cytoscape({ container: ref });
+        var cy = cytoscape({ container: ref,
+            style: [
+                {
+                  selector: 'node',
+                  style: {
+                    'label': 'data(id)'
+                  }
+                }
+              ] });
         var eles = cy.add(elements);    
         var nav = cy.navigator( defaults ); // get navigator instance, nav
     }
