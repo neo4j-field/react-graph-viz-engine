@@ -10,7 +10,7 @@ export function formatData(data: [GraphNode[], GraphEdge[]]): object {
         var element = { ...node, ...node["properties"] }
         delete element["properties"]
         //@ts-ignore
-        elements["nodes"].push({ data: element })
+        elements["nodes"].push({ data: element, classes: "center-center" })
     });
     edges.forEach(function (edge) {
         var element = { ...edge, ...edge["properties"] }

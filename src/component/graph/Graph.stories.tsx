@@ -63,16 +63,29 @@ const Template = (args) => <Graph {...args} />;
 
 
 //👇 Each story then reuses that template
-export const Primary = Template.bind({});
-Primary.args = {
+export const LiveGraphQL = Template.bind({});
+LiveGraphQL.args = {
    showNavigator: false,
    layout: 'euler',
-   data: ELEMENTS
+   graphqlUrl: "https://movies.neo4j-graphql.com/",
+   graphqlQuery:
+   `{
+      actors(options: {limit: 20}) {
+        __typename
+        name
+        acted_in {
+          title
+          genres {
+            name
+          }
+        }
+      }
+   }`
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
+export const DummyData = Template.bind({});
+DummyData.args = {
    showNavigator: true,
    layout: 'euler',
-   elements: ELEMENTS_SECONDARY 
+   data: ELEMENTS 
 };
