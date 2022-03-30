@@ -67,6 +67,10 @@ export default {
          options: ['euler', 'grid'],
          control: { type: 'select' },
       },
+      renderer: {
+         options: ['cytoscape', 'react-force-graph'],
+         control: { type: 'select' },
+      },
    },
 };
 
@@ -76,8 +80,9 @@ const Template = (args) => <Graph {...args} />;
 /**
  * 
  */
-export const DummyDataSimple = Template.bind({});
-DummyDataSimple.args = {
+export const SimpleData = Template.bind({});
+SimpleData.args = {
+   renderer: 'cytoscape',
    showNavigator: true,
    layout: 'euler',
    data: SAMPLE_DATA
@@ -86,6 +91,7 @@ DummyDataSimple.args = {
 //👇 Each story then reuses that template
 export const LiveGraphQL = Template.bind({});
 LiveGraphQL.args = {
+   renderer: 'cytoscape',
    showNavigator: false,
    layout: 'euler',
    graphqlUrl: "https://movies.neo4j-graphql.com/",
@@ -127,6 +133,11 @@ LiveGraphQL.args = {
       }
    },
    interactions: {
-      onNodeClick: (e) => alert(e.name)
+      onNodeClick: (e) => alert(e.name),
+      onNodeDoubleClick: (e) => {
+         // call graphql
+         // update node set
+         // ...
+      }
    }
 };

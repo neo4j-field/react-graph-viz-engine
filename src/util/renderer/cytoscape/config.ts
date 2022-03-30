@@ -1,7 +1,7 @@
 /**
  * Settings for the graph navigator window on the bottom right of the visualization window.
  */
-export const navigatorSettings = {
+ export const navigatorSettings = {
     container: "#navigator" // html dom element
     , viewLiveFramerate: 0 // set false to update graph pan only on drag end; set 0 to do it instantly; set a number (frames per second) to update not more than N times per second
     , thumbnailEventFramerate: 30 // max thumbnail's updates per second triggered by graph updates
