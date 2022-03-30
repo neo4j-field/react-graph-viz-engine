@@ -4,13 +4,13 @@ React component for visualizing graph data
 [Play with the live example here](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html)
 
 ## React component arguments
-| Argument | Type | Description |
-| --- | --- | --- |
-| data | object | Graph data |
-| graphqlUrl | string | GraphQL endpoint URL |
-| graphqlQuery | string | GraphQL query |
-| style | object | Style configuration object |
-| interactions | object | Interaction configuration object |
+Argument | Type | Description
+--- | --- | ---
+data | object | Graph data
+graphqlUrl | string | GraphQL endpoint URL
+graphqlQuery | string | GraphQL query
+style | object | Style configuration object
+interactions | object | Interaction configuration object
 
 ## Compatible visualization libraries
 * cytoscape.js
@@ -94,12 +94,12 @@ style: {
 ```
 
 **Available style configuration properties**
-| Property | ValueType | Description |
-| --- | --- | --- |
-| nodeCaption | string | Object containing the node labels and the corresponding property to display |
-| nodeColor | string | Object containing the node labels and the corresponding color to display, in an HTML compatible format |
-| nodeSize | number | Object containing the node labels and the corresponding size to display |
-| nodeCaptionSize | number | Object containing the node labels and the corresponding font size to display for the node caption |
+Property | ValueType | Description
+--- | --- | ---
+nodeCaption | string | Object containing the node labels and the corresponding property to display
+nodeColor | string | Object containing the node labels and the corresponding color to display, in an HTML compatible format
+nodeSize | number | Object containing the node labels and the corresponding size to display
+nodeCaptionSize | number | Object containing the node labels and the corresponding font size to display for the node caption
 
 ## Interactions / event handling
 The React component can take an interactions configuration object - JSON in the following format :
@@ -119,6 +119,6 @@ interactions: {
 ```
 
 **Available interactions**
-| Event name | Description |
-| --- | --- |
-| onNodeClick | Triggered when a node is clicked |
+Event name | Description
+--- | ---
+onNodeClick | Triggered when a node is clicked
