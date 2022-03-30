@@ -11,5 +11,42 @@ The data format expected by the component is a JSON object and is based on the G
 [See example here](https://neo4j.com/developer/graphql/#_querying_data)
 
 ## Config object
+The config object is a JSON in the following format :
+
+Format :
+```json
+config: {
+    configPropertyKey1:{
+        nodeLabel1: "propertyValue1"
+        nodeLabel2: "propertyValue2"
+    }
+}
+```
+
+Example :
+```json
+config: {
+    nodeCaption:{
+        Movie: "title",
+        Actor: "name",
+        Genre: "name"
+    },
+    nodeColor:{
+        Movie: "red",
+        Actor: "blue",
+        Genre: "green"
+    },
+    nodeSize:{
+        Movie: 40,
+        Actor: 20,
+        Genre: 30
+    },
+    nodeCaptionSize:{
+        Movie: 15,
+        Actor: 15,
+        Genre: 15
+    }
+   }
+```
 
 ## Interactions / event handling
