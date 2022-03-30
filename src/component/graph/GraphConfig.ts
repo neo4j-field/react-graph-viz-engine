@@ -1,4 +1,6 @@
-// Configuration for the graph navigator window on the bottom right of the screen.
+/**
+ * Settings for the graph navigator window on the bottom right of the visualization window.
+ */
 export const navigatorSettings = {
     container: "#navigator" // html dom element
     , viewLiveFramerate: 0 // set false to update graph pan only on drag end; set 0 to do it instantly; set a number (frames per second) to update not more than N times per second
@@ -9,6 +11,9 @@ export const navigatorSettings = {
     , rerenderDelay: 100 // ms to throttle rerender updates to the panzoom for performance
 };
 
+/**
+ * Settings for the force-directed graph layout
+ */
 export const layoutSettings = {
 
     // The ideal length of a spring
