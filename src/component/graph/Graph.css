@@ -3,3 +3,22 @@
     text-valign: center;
     text-halign: center;
 }
+
+.target-popper {
+    display: none;
+    max-width: 500px;
+    padding: 1rem;
+    text-align: left;
+    border-radius: 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    z-index: 2;
+}
+    
+.target-popper.active {
+    display: block;
+}
+    
+.target-popper tr td:first-child {
+    font-weight: bold;
+}
