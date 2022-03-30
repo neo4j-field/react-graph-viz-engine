@@ -59,6 +59,8 @@ export const ReactForceGraphRenderer = ({
         height={height}
         cooldownTicks={50}
         nodeLabel={node => `<div>${generateTooltip(node)}</div>`}
+        linkWidth={3}
+        nodeVal={4}
         nodeCanvasObjectMode={() => "after"}
         onEngineStop={() => {
             if (firstRun) {
@@ -67,7 +69,13 @@ export const ReactForceGraphRenderer = ({
             }
         }}
         nodeCanvasObject={(node, ctx, globalScale) => {
-            const label = node.name;
+            var label = "";
+            if(node.name){
+                label = node.name;
+            }else if(node.title) {
+                label = node.title;
+            }
+
             const fontSize = 10;
             ctx.font = `${fontSize}px Sans-Serif`;
             ctx.fillStyle = "black";

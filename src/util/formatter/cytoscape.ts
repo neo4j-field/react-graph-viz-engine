@@ -1,5 +1,8 @@
 import { GraphNode, GraphEdge } from "../parser/parser";
 
+/**
+ * Formats our generic graph data representation into the format Cytoscape expects.
+ */
 export function formatData(data: [GraphNode[], GraphEdge[]]): object {
     var [nodes, edges] = data
     var elements = {
