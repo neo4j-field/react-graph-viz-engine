@@ -1,6 +1,8 @@
 # react-graph-viz-engine
 React component for visualizing graph data
 
+Live example connected to GraphQL : https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html
+
 ## Embedded visualization libraries
 * cytoscape.js
 
