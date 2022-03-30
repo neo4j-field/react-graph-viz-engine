@@ -60,6 +60,7 @@ const SAMPLE_DATA =
 export default {
    title: 'Examples',
    component: Graph,
+   parameters: { options: { showPanel: true } },
    decorators: [jsxDecorator],
    argTypes: {
       layout: {
@@ -103,7 +104,7 @@ LiveGraphQL.args = {
         }
       }
    }`,
-   config: {
+   style: {
       nodeCaption: {
          Movie: "title",
          Actor: "name",
@@ -124,5 +125,8 @@ LiveGraphQL.args = {
          Actor: 15,
          Genre: 15
       }
+   },
+   interactions: {
+      onNodeClick: (e) => alert(e.name)
    }
 };

@@ -16,7 +16,8 @@ var navigator = require('cytoscape-navigator');
 
 const GraphVisualization = ({ data = undefined,
                               layout = 'euler',
-                              config = {},
+                              style = {},
+                              interactions = {},
                               showNavigator = false,
                               graphqlUrl,
                               graphqlQuery }) => {
@@ -26,7 +27,7 @@ const GraphVisualization = ({ data = undefined,
 
         var cy = cytoscape({
             container: ref,
-            style: getStyle(config)
+            style: getStyle(style)
         });
 
         cytoscape.use(euler);
@@ -65,6 +66,8 @@ const GraphVisualization = ({ data = undefined,
             }
         }
 
+        //
+        cy.on("click", "node", e => interactions.onNodeClick && interactions.onNodeClick(e.target._private.data));
 
     }
 
