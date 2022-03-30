@@ -41,7 +41,20 @@ export function mapConfig(config: object) {
         }
     })
 
-    return [...mappedConfig.flat(), {
+    return [
+        {
+            selector: 'node[title]',
+            style: {
+                label: 'data(title)'
+            }
+        },
+        {
+            selector: 'node[name]',
+            style: {
+                label: 'data(name)'
+            }
+        },
+        ...mappedConfig.flat(), {
             selector: ".center-center",
             style: {
                 "background": "black",

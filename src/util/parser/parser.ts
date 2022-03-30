@@ -31,6 +31,7 @@ function parseNodesFromDict(dict: object): GraphNode {
     // Return node
     var node = new GraphNode();
     var _properties = {};
+    // TODO : Make that configurable per-label
     if ("ID" in dict && dict["ID"] != null) {
         node.id = dict["ID"];
     } else {

@@ -4,38 +4,55 @@ import { jsxDecorator } from "storybook-addon-jsx";
 import Graph from './Graph';
 
 const ELEMENTS =
-   {
-      "data": {
-        "movies": [
-          {
-            "__typename": "Movie",
-            "ID": 1,
-            "title": "Band of Brothers",
-            "actors": [
-              {
-                "__typename": "Actor",
-                "ID": 2,
-                "name": "Scott Grimes",
-                "born": null
-              },
-              {
-                "__typename": "Actor",
-                "ID": 3,
-                "name": "Ron Livingston",
-                "born": "1967-06-05",
-                "pets": [
-                    {
-                      "__typename": "Horse",
-                    "ID": 4,
-                    "name": "Little Thunder"
-                  }
-                ] 
-              }
-            ]
-          }
-        ]
-      }
-    }
+{
+   "data": {
+     "actors": [
+       {
+         "__typename": "Actor",
+         "ID": 1,
+         "name": "François Lallement",
+         "acted_in": [
+           {
+             "__typename": "Movie",
+             "ID": 3,
+             "title": "Trip to the Moon, A (Voyage dans la lune, Le)",
+             "genres": [
+               {
+                 "__typename": "Genre",
+                 "ID": 5,
+                 "name": "Action"
+               },
+               {
+                 "__typename": "Genre",
+                 "ID": 6,
+                 "name": "Adventure"
+               }
+             ]
+           }
+         ]
+       },
+       {
+         "__typename": "Actor",
+         "ID": 2,
+         "name": "Jules-Eugène Legris",
+         "acted_in": [
+           {
+             "__typename": "Movie",
+             "ID": 3,
+             "title": "Trip to the Moon, A (Voyage dans la lune, Le)",
+             "genres": [
+               {
+                 "__typename": "Genre",
+                 "ID": 7,
+                 "name": "Sci-Fi"
+               }
+             ]
+           }
+         ]
+       }
+     ]
+   }
+ }
 ;
 
 const ELEMENTS_SECONDARY = [
@@ -107,8 +124,8 @@ LiveGraphQL.args = {
    }
 };
 
-export const DummyData = Template.bind({});
-DummyData.args = {
+export const DummyDataSimple = Template.bind({});
+DummyDataSimple.args = {
    showNavigator: true,
    layout: 'euler',
    data: ELEMENTS 
