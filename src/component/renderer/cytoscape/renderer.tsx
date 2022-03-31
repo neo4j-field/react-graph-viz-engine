@@ -7,14 +7,16 @@ import './style.css';
 import cytoscape from 'cytoscape';
 import euler from 'cytoscape-euler';
 import popper from 'cytoscape-popper';
+import dagre from 'cytoscape-dagre';
+
 import "cytoscape-navigator/cytoscape.js-navigator.css";
 import { mapConfig } from "./config-mapper";
 import useDimensions from "react-cool-dimensions";
-
+import { LAYOUT_NAMES } from "./config";
 var navigator = require('cytoscape-navigator');
 
 export const CytoScapeRenderer = ({ data = undefined,
-    layout = 'euler',
+    layout = 'graph',
     style = {},
     interactions = {},
     showNavigator = false,
@@ -40,6 +42,7 @@ export const CytoScapeRenderer = ({ data = undefined,
         });
 
         cytoscape.use(euler);
+        cytoscape.use(dagre);
         cytoscape.use(popper);
 
         if (data === undefined && graphqlQuery !== undefined && graphqlUrl !== undefined) {
@@ -48,7 +51,7 @@ export const CytoScapeRenderer = ({ data = undefined,
                 var parsedData = parseData(_data);
                 var formattedData = formatData(parsedData);
                 var eles = cy.add(formattedData);
-                cy.layout({ ...layoutSettings, name: layout }).run();
+                cy.layout({ ...layoutSettings, name: LAYOUT_NAMES[layout] }).run();
                 cy.filter('node').forEach(t => {
                     bindPopper(t);
                 })
@@ -60,7 +63,7 @@ export const CytoScapeRenderer = ({ data = undefined,
             var parsedData = parseData(data);
             var formattedData = formatData(parsedData);
             var eles = cy.add(formattedData);
-            cy.layout({ ...layoutSettings, name: layout }).run();
+            cy.layout({ ...layoutSettings, name: LAYOUT_NAMES[layout] }).run();
             cy.filter('node').forEach(t => {
                 bindPopper(t);
             })
@@ -81,6 +84,7 @@ export const CytoScapeRenderer = ({ data = undefined,
 
         //
         cy.on("click", "node", e => interactions && interactions.onNodeClick && interactions.onNodeClick(e.target._private.data));
+        cy.on("cxttap", "node", e => interactions && interactions.onNodeRightClick && interactions.onNodeRightClick(e.target._private.data));
 
     }
 

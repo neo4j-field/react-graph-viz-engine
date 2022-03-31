@@ -106,3 +106,9 @@ export const layoutSettings = {
     // false : Use the current node positions as the initial positions
     randomize: true
 };
+
+// Layout names for Cytoscape
+export const LAYOUT_NAMES = {
+    'graph': 'euler',
+    'tree': 'dagre'
+}

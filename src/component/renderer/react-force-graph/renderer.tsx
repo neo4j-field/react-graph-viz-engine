@@ -6,10 +6,17 @@ import { parseData } from "../../../util/parser";
 import ReactDOMServer from 'react-dom/server';
 import useDimensions from "react-cool-dimensions";
 import { mapConfig } from "./config-mapper";
+import './style.css';
 
 const generateTooltip = (value) => {
-    const tooltip = <div>
-        {JSON.stringify(value)}
+    const tooltip = <div><table>
+        {Object.keys(value).map(key => {
+            if (key !== "id" && key !== "color" && key !== "size" && key !== "index" && key !== "__indexColor"
+                && key !== "x" && key !== "y" && key !== "vx" && key !== "vy" && key !== "fx" && key !== "fy") {
+                return <tr><td style={{ paddingRight: "10px" }}><b>{key}</b></td><td>{value[key]}</td></tr>
+            }
+        })}
+    </table>
     </div>;
     return ReactDOMServer.renderToString(tooltip);
 }
@@ -17,7 +24,7 @@ const generateTooltip = (value) => {
 
 export const ReactForceGraphRenderer = ({
     data = undefined,
-    layout = 'euler',
+    layout = 'graph',
     style = {},
     interactions = {},
     showNavigator = false,
@@ -52,7 +59,7 @@ export const ReactForceGraphRenderer = ({
         }
     }
 
-    
+
     const fgRef = useRef();
     const visualization = <ForceGraph2D
         ref={fgRef}
@@ -62,6 +69,8 @@ export const ReactForceGraphRenderer = ({
         nodeLabel={node => `<div>${generateTooltip(node)}</div>`}
         linkWidth={3}
         nodeVal={node => node.size}
+        onNodeClick={e => interactions && interactions.onNodeClick && interactions.onNodeClick(e)}
+        onNodeRightClick={e => interactions && interactions.onNodeRightClick && interactions.onNodeRightClick(e)}
         nodeCanvasObjectMode={() => "after"}
         onEngineStop={() => {
             if (firstRun) {
@@ -71,9 +80,9 @@ export const ReactForceGraphRenderer = ({
         }}
         nodeCanvasObject={(node, ctx, globalScale) => {
             var label = "";
-            if(node.name){
+            if (node.name) {
                 label = node.name;
-            }else if(node.title) {
+            } else if (node.title) {
                 label = node.title;
             }
 
@@ -89,7 +98,7 @@ export const ReactForceGraphRenderer = ({
     />
 
 
-    return <div style={{width: "100%", height: "100%"}} ref={observe}>
+    return <div style={{ width: "100%", height: "100%" }} ref={observe}>
         {vizData ? visualization : "Loading..."}
     </div>
 }

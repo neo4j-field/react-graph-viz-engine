@@ -9,6 +9,7 @@
     max-width: 500px;
     padding: 1rem;
     text-align: left;
+    font-family: "arial";
     border-radius: 0;
     border: 1px solid #ccc;
     background: #fff;
@@ -21,4 +22,5 @@
     
 .target-popper tr td:first-child {
     font-weight: bold;
+    padding-right: 10px;
 }

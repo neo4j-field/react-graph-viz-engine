@@ -25,6 +25,7 @@
   "homepage": "https://github.com/neo4j-field/react-graph-viz-engine#readme",
   "dependencies": {
     "cytoscape": "^3.21.0",
+    "cytoscape-dagre": "^2.4.0",
     "cytoscape-euler": "^1.2.2",
     "cytoscape-navigator": "^2.0.1",
     "cytoscape-popper": "^2.0.0",

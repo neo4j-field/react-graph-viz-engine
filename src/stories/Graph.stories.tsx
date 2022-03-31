@@ -1,4 +1,4 @@
-import {defaultArgs, defaultConfig, Template} from './defaults';
+import { defaultArgs, defaultConfig, Template } from './defaults';
 
 const SAMPLE_DATA =
 {
@@ -85,7 +85,7 @@ LiveGraphQL.args = {
    ...defaultArgs,
    showNavigator: false,
    graphqlUrl: GRAPHQL_URL,
-   graphqlQuery:GRAPHQL_QUERY,
+   graphqlQuery: GRAPHQL_QUERY,
    style: {
       nodeCaption: {
          Movie: "title",
@@ -99,9 +99,9 @@ LiveGraphQL.args = {
       },
       nodeSize: {
          Movie: (movie) => {
-            if(movie.released){
+            if (movie.released) {
                return movie.released.split('-')[0] - 1900
-            }else{
+            } else {
                return 40;
             }
          },
@@ -115,11 +115,7 @@ LiveGraphQL.args = {
       }
    },
    interactions: {
-      onNodeClick: (e) => alert(e.name),
-      onNodeDoubleClick: (e) => {
-         // call graphql
-         // update node set
-         // ...
-      }
+      onNodeClick: (e) => alert(e.name ? e.name : e.title),
+      onNodeRightClick: (e) => alert('right click')
    }
 };

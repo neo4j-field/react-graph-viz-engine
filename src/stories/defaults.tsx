@@ -20,7 +20,7 @@ export const defaultConfig = {
     decorators: [jsxDecorator],
     argTypes: {
         layout: {
-            options: ['euler', 'grid'],
+            options: ['graph', 'tree'],
             control: { type: 'select' },
         },
         renderer: {
@@ -32,7 +32,7 @@ export const defaultConfig = {
 
 export const defaultArgs = {
     renderer: 'cytoscape',
-    layout: 'euler'
+    layout: 'graph'
 }
 
 //👇 We create a “template” of how args map to rendering different variations of the visualization.

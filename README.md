@@ -3,10 +3,10 @@
 An out-of-the-box React component for visualizing graph data.
 
 Key features:
-- An easily embeddable React component to render force-directed graphs
-- Integrated translation into library data formats from a standard (GraphQL)
-- A straightforward way to add (rule-based) styling and interactions to your visualizations
-- Support for multiple renderers & graph layouts
+- An easily embeddable React component to render force-directed graphs.
+- Integrated translation into library specific formats from a unified standard (GraphQL).
+- A straightforward way to add (rule-based) styling and interactions to your visualizations.
+- Support for multiple renderers & graph layouts.
 
 React component for visualizing graph data.
 
@@ -20,6 +20,9 @@ The Storybook provides examples  for each of the functionalities this library pr
 ![JSX definition in Storybook](docs/assets/storybook_jsx.png)
 
 [Play with the live example here](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html)
+
+## Example on how to embed the component in your own React app 
+# TODO - add this
 
 ## React component arguments
 Argument | Type | Description
