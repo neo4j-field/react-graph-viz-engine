@@ -22,7 +22,8 @@ export const CytoScapeRenderer = ({ data = undefined,
     graphqlQuery }) => {
 
     const [ref, setRef] = useState(undefined);
-  
+    const [dataLoaded, setDataLoaded] = useState(false);
+
     const { observe, unobserve, width, height, entry } = useDimensions({
         onResize: ({ observe, unobserve, width, height, entry }) => {
             // Triggered whenever the size of the target is changed...
@@ -30,7 +31,7 @@ export const CytoScapeRenderer = ({ data = undefined,
             observe(); // To re-start observing the current target element
         },
     });
-    
+
     if (ref) {
 
         var cy = cytoscape({
@@ -43,6 +44,7 @@ export const CytoScapeRenderer = ({ data = undefined,
 
         if (data === undefined && graphqlQuery !== undefined && graphqlUrl !== undefined) {
             fetchGraphQLDataJSON(graphqlUrl, graphqlQuery).then(_data => {
+                setDataLoaded(true);
                 var parsedData = parseData(_data);
                 var formattedData = formatData(parsedData);
                 var eles = cy.add(formattedData);
@@ -52,6 +54,9 @@ export const CytoScapeRenderer = ({ data = undefined,
                 })
             });
         } else {
+            if (dataLoaded == false) {
+                setDataLoaded(true);
+            }
             var parsedData = parseData(data);
             var formattedData = formatData(parsedData);
             var eles = cy.add(formattedData);
@@ -81,7 +86,8 @@ export const CytoScapeRenderer = ({ data = undefined,
 
     return <>
         <div style={{ width: 300, height: 200, position: 'absolute', right: 0, bottom: 0, overflow: 'hidden' }} id="navigator" > </div>
-        < div id="cy" ref={(cyRef) => { setRef(cyRef); }} style={{ width: "100%", height: "100%" }}> </div>
+        {!dataLoaded ? <div>Loading...</div> : <></>}
+        <div id="cy" ref={(cyRef) => { setRef(cyRef); }} style={{ width: "100%", height: "100%" }}> </div>
     </>
 }
 
