@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/component/**/*.stories.tsx'],
+  stories: ['../src/stories/*.stories.tsx'],
   addons: ['@storybook/addon-controls/register', 'storybook-addon-jsx', '@storybook/addon-docs'],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({

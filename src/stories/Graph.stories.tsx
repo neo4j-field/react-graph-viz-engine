@@ -1,7 +1,4 @@
-import React from 'react';
-import { jsxDecorator } from "storybook-addon-jsx";
-import Graph from './Graph';
-
+import {defaultArgs, defaultConfig, Template} from './defaults';
 
 const SAMPLE_DATA =
 {
@@ -54,62 +51,40 @@ const SAMPLE_DATA =
    }
 };
 
-/**
- * Configuration for all the graph visualization stories in the storybook.
- */
+const GRAPHQL_URL = "https://movies.neo4j-graphql.com/"
+const GRAPHQL_QUERY = `{
+   actors(options: {limit: 20}) {
+     __typename
+     name
+     acted_in {
+       __typename
+       title
+       genres {
+         __typename
+         name
+       }
+     }
+   }
+}`
+
 export default {
-   title: 'Examples',
-   component: Graph,
-   parameters: { options: { showPanel: true } },
-   decorators: [jsxDecorator],
-   argTypes: {
-      layout: {
-         options: ['euler', 'grid'],
-         control: { type: 'select' },
-      },
-      renderer: {
-         options: ['cytoscape', 'react-force-graph'],
-         control: { type: 'select' },
-      },
-   },
+   title: 'Usage',
+   ...defaultConfig
 };
 
-//👇 We create a “template” of how args map to rendering different variations of the visualization.
-const Template = (args) => <Graph {...args} />;
-
-/**
- * 
- */
 export const SimpleData = Template.bind({});
 SimpleData.args = {
-   renderer: 'cytoscape',
+   ...defaultArgs,
    showNavigator: true,
-   layout: 'euler',
    data: SAMPLE_DATA
 };
 
-//👇 Each story then reuses that template
 export const LiveGraphQL = Template.bind({});
 LiveGraphQL.args = {
-   renderer: 'cytoscape',
+   ...defaultArgs,
    showNavigator: false,
-   layout: 'euler',
-   graphqlUrl: "https://movies.neo4j-graphql.com/",
-   graphqlQuery:
-      `{
-      actors(options: {limit: 20}) {
-        __typename
-        name
-        acted_in {
-          __typename
-          title
-          genres {
-            __typename
-            name
-          }
-        }
-      }
-   }`,
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery:GRAPHQL_QUERY,
    style: {
       nodeCaption: {
          Movie: "title",
