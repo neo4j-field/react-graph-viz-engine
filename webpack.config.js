@@ -13,6 +13,10 @@ module.exports = {
                 options: { presets: ["@babel/env"] }
             },
             {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            },
+            {
                 test: /\.js$/,
                 enforce: 'pre',
                 use: ['source-map-loader'],
@@ -25,8 +29,14 @@ module.exports = {
     },
     resolve: { extensions: ['*', '.js', '.jsx', '.ts', '.tsx'] },
     output: {
-        filename: 'bundle.js'
-    },
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+        libraryTarget: "umd",
+        library: {
+            name: 'react-graph-viz-engine',
+            type: 'umd',
+          },
+      },
     devServer: {
         port: 3000,
         hot: true

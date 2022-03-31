@@ -1,3 +1,5 @@
 // We use the graph visualization as a default export.
-const Graph = './components/Graph'
+
+import Graph from "./component/graph/Graph";
+
 export default Graph;

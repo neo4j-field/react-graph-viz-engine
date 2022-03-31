@@ -1,12 +1,18 @@
 {
   "name": "react-graph-viz-engine",
-  "version": "0.0.1",
+  "version": "0.0.18",
   "description": "React component for visualizing graph data",
-  "main": "index.js",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "start": "start-storybook",
-    "build": "webpack --mode production",
-    "publish": "npm publish"
+    "build-dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -36,6 +42,10 @@
     "react-markdown": "^8.0.1",
     "uuid": "^8.3.2"
   },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.17.8",
@@ -54,6 +64,7 @@
     "node-sass": "^7.0.1",
     "path": "^0.12.7",
     "sass-loader": "^12.6.0",
+    "source-map-loader": "^3.0.1",
     "storybook-addon-jsx": "^7.3.14",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
