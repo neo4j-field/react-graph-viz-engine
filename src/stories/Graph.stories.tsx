@@ -85,7 +85,12 @@ LiveGraphQLData.args = {
    ...defaultArgs,
    showNavigator: false,
    graphqlUrl: GRAPHQL_URL,
-   graphqlQuery:GRAPHQL_QUERY,
+   graphqlQuery:GRAPHQL_QUERY
+};
+
+export const Styling = Template.bind({});
+Styling.args = {
+   ...defaultArgs,
    style: {
       nodeCaption: {
          Movie: "title",
@@ -114,6 +119,14 @@ LiveGraphQLData.args = {
          Genre: 15
       }
    },
+   showNavigator: false,
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery:GRAPHQL_QUERY
+};
+
+export const Interactions = Template.bind({});
+Interactions.args = {
+   ...defaultArgs,
    interactions: {
       onNodeClick: (e) => alert(e.name),
       onNodeDoubleClick: (e) => {
@@ -121,5 +134,8 @@ LiveGraphQLData.args = {
          // update node set
          // ...
       }
-   }
+   },
+   showNavigator: false,
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery:GRAPHQL_QUERY,
 };
