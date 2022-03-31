@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { layoutSettings, navigatorSettings } from "./config";
-import { fetchGraphQLDataJSON } from "../../data/fetch";
-import { formatData } from "../../formatter/cytoscape";
-import { parseData } from "../../parser/parser";
-import './cytoscape.css';
+import { fetchGraphQLDataJSON } from "../../../util/fetch";
+import { formatData } from "./formatter";
+import { parseData } from "../../../util/parser";
+import './style.css';
 import cytoscape from 'cytoscape';
 import euler from 'cytoscape-euler';
 import popper from 'cytoscape-popper';
 import "cytoscape-navigator/cytoscape.js-navigator.css";
-import { mapConfig } from "../../configmapper/cytoscape";
+import { mapConfig } from "./config-mapper";
 import useDimensions from "react-cool-dimensions";
 
 var navigator = require('cytoscape-navigator');

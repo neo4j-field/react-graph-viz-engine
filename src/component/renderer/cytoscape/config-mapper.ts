@@ -1,3 +1,6 @@
+/**
+ * For cytoscape, we map the configuration dict into a dict of styling options.
+ */
 export function mapConfig(config: object) {
     var mappedConfig = Object.keys(config).map(key => {
         switch(key) {

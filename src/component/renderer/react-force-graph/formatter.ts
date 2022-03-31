@@ -1,7 +1,7 @@
-import { GraphNode, GraphEdge } from "../parser/parser";
+import { GraphNode, GraphEdge } from "../../../util/parser";
 
 /**
- * Formats our generic graph data into a format that react-force-graph
+ * Formats our generic graph data into a format that react-force-graph expects.
  */
 export function formatData(data: [GraphNode[], GraphEdge[]]): object {
     var [nodes, edges] = data

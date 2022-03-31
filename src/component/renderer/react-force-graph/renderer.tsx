@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { ForceGraph2D } from "react-force-graph";
-import { fetchGraphQLDataJSON } from "../../data/fetch";
-import { formatData } from "../../formatter/react-force-graph";
-import { parseData } from "../../parser/parser";
+import { fetchGraphQLDataJSON } from "../../../util/fetch";
+import { formatData } from "./formatter";
+import { parseData } from "../../../util/parser";
 import ReactDOMServer from 'react-dom/server';
 import useDimensions from "react-cool-dimensions";
 

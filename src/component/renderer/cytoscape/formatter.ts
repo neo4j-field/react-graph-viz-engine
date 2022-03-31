@@ -1,4 +1,4 @@
-import { GraphNode, GraphEdge } from "../parser/parser";
+import { GraphNode, GraphEdge } from "../../../util/parser";
 
 /**
  * Formats our generic graph data representation into the format Cytoscape expects.

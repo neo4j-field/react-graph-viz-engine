@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { CytoScapeRenderer } from '../../util/renderer/cytoscape/cytoscape';
-import { ReactForceGraphRenderer } from '../../util/renderer/react-force-graph/react-force-graph';
+import { CytoScapeRenderer } from '../renderer/cytoscape/renderer';
+import { ReactForceGraphRenderer } from '../renderer/react-force-graph/renderer';
 
 
 
