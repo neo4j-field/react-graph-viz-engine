@@ -18,7 +18,7 @@ The Storybook provides examples for each of the functionalities this library pro
 * Change the config parameters in the "Controls" tab and see how they affect the visualization ;
 * Get the corresponding JSX definition of the React component
 
-![JSX definition in Storybook](docs/assets/storybook_jsx.png)
+![JSX definition in Storybook](assets/storybook_jsx.png)
 
 ## Using the component in your own apps
 To use this component in your own React app, first install the library:
