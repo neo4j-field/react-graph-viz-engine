@@ -9,6 +9,7 @@ import UsageDocs from './Graph.mdx';
 export const defaultConfig = {
     component: Graph,
     parameters: {
+        viewMode: 'story',
         options: {
             showPanel: true
         },

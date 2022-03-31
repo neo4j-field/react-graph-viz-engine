@@ -59,6 +59,7 @@ const GRAPHQL_QUERY = `{
      acted_in {
        __typename
        title
+       released
        genres {
          __typename
          name
@@ -97,7 +98,13 @@ LiveGraphQL.args = {
          Genre: "green"
       },
       nodeSize: {
-         Movie: 40,
+         Movie: (movie) => {
+            if(movie.released){
+               return movie.released.split('-')[0] - 1900
+            }else{
+               return 40;
+            }
+         },
          Actor: 20,
          Genre: 30
       },
