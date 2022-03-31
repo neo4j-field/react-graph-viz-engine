@@ -1,4 +1,5 @@
 # react-graph-viz-engine
+
 An out-of-the-box React component for visualizing graph data.
 
 Key features:
@@ -6,6 +7,17 @@ Key features:
 - Integrated translation into library data formats from a standard (GraphQL)
 - A straightforward way to add styling and interactions to your visualizations
 - Support for multiple renderers & graph layouts
+
+React component for visualizing graph data.
+
+## Getting Started
+This project wraps the library in a Storybook UI. [More information on Storybook here](https://storybook.js.org/).
+
+The Storybook provides examples  for each of the functionalities this library provides. For each of these examples, you can :
+* Change the config parameters in the "Controls" tab and see how they affect the visualization ;
+* Get the corresponding JSX definition of the React component
+
+![JSX definition in Storybook](docs/assets/storybook_jsx.png)
 
 [Play with the live example here](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html)
 
@@ -20,17 +32,18 @@ interactions | object | Interaction configuration object
 
 ## Compatible visualization libraries
 * cytoscape.js
+* react-force-graph.js
 
-## data / graphqlUrl & graphqlQuery
+## Plain data / graphqlUrl & graphqlQuery
 This library provides for two scenarios :
-* **Static data**: the data is provided as a JSON object
+* **Plain data**: the data is provided as a JSON object
 * **Fetch data**: the data can also be fetched from a **GraphQL** endpoint
 
 The React component expects either :
 * A **data** argument, containing the input data
 * Two arguments, **graphqlUrl** and **graphqlQuery** to pass the information to call the GraphQL endpoint
 
-### Static data - Expected data format
+### Plain data - Expected data format
 The data format expected by the component is a JSON object and is based on the GraphQL response format sent by the Neo4j GraphQL library.
 
 Example
