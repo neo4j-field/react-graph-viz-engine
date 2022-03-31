@@ -80,12 +80,17 @@ SimpleData.args = {
    data: SAMPLE_DATA
 };
 
-export const LiveGraphQL = Template.bind({});
-LiveGraphQL.args = {
+export const LiveGraphQLData = Template.bind({});
+LiveGraphQLData.args = {
    ...defaultArgs,
    showNavigator: false,
    graphqlUrl: GRAPHQL_URL,
-   graphqlQuery: GRAPHQL_QUERY,
+   graphqlQuery: GRAPHQL_QUERY
+};
+
+export const Styling = Template.bind({});
+Styling.args = {
+   ...defaultArgs,
    style: {
       nodeCaption: {
          Movie: "title",
@@ -114,8 +119,20 @@ LiveGraphQL.args = {
          Genre: 15
       }
    },
+   showNavigator: false,
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery: GRAPHQL_QUERY
+};
+
+export const Interactions = Template.bind({});
+Interactions.args = {
+   ...defaultArgs,
    interactions: {
+
       onNodeClick: (e) => alert(e.name ? e.name : e.title),
       onNodeRightClick: (e) => alert('right click')
-   }
+   },
+   showNavigator: false,
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery: GRAPHQL_QUERY,
 };
