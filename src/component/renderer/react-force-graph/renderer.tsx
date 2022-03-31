@@ -5,6 +5,7 @@ import { formatData } from "./formatter";
 import { parseData } from "../../../util/parser";
 import ReactDOMServer from 'react-dom/server';
 import useDimensions from "react-cool-dimensions";
+import { mapConfig } from "./config-mapper";
 
 const generateTooltip = (value) => {
     const tooltip = <div>
@@ -38,20 +39,20 @@ export const ReactForceGraphRenderer = ({
     if (vizData === undefined) {
         if (data === undefined && graphqlQuery !== undefined && graphqlUrl !== undefined) {
             fetchGraphQLDataJSON(graphqlUrl, graphqlQuery).then(_data => {
-
                 var parsedData = parseData(_data);
                 var formattedData = formatData(parsedData);
-                setVizData(formattedData);
+                var mappedData = mapConfig(style, formattedData);
+                setVizData(mappedData);
             });
         } else {
-            console.log(data)
             var parsedData = parseData(data);
             var formattedData = formatData(parsedData);
-            console.log(formattedData);
-            setVizData(formattedData);
+            var mappedData = mapConfig(style, formattedData);
+            setVizData(mappedData);
         }
     }
 
+    
     const fgRef = useRef();
     const visualization = <ForceGraph2D
         ref={fgRef}
@@ -60,7 +61,7 @@ export const ReactForceGraphRenderer = ({
         cooldownTicks={50}
         nodeLabel={node => `<div>${generateTooltip(node)}</div>`}
         linkWidth={3}
-        nodeVal={4}
+        nodeVal={node => node.size}
         nodeCanvasObjectMode={() => "after"}
         onEngineStop={() => {
             if (firstRun) {
