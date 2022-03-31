@@ -80,8 +80,8 @@ SimpleData.args = {
    data: SAMPLE_DATA
 };
 
-export const LiveGraphQL = Template.bind({});
-LiveGraphQL.args = {
+export const LiveGraphQLData = Template.bind({});
+LiveGraphQLData.args = {
    ...defaultArgs,
    showNavigator: false,
    graphqlUrl: GRAPHQL_URL,

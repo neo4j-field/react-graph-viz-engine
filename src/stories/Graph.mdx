@@ -1,14 +1,104 @@
-<!-- Custom-MDX-Documentation.mdx -->
+<!-- Graph.mdx -->
 
-# Replacing DocsPage with custom `MDX` content
+# Compatible visualization libraries
+* cytoscape.js
+* react-force-graph.js
 
-This file is a documentation-only `MDX`file to customize Storybook's [DocsPage](https://storybook.js.org/docs/react/writing-docs/docs-page#replacing-docspage).
+# Plain data
+The data format expected by the component is a JSON object and is based on the GraphQL response format sent by the Neo4j GraphQL library.
 
-It can be further expanded with your own code snippets and include specific information related to your stories.
+Example :
+```json
+{
+   "data": {
+      "actors": [
+         {
+            "__typename": "Actor",
+            "ID": 1,
+            "name": "François Lallement",
+            "acted_in": [
+               ...nested list of objects
+            ]
+         }
+      ]
+   }
+}
+```
 
-For example:
+# Live GraphQL data
+To fetch data from a GraphQL endpoint, the component expects the following arguments :
+* **graphqlUrl**: the URL of the GraphQL endpoint
+* **graphqlQuery**: the GraphQL query to execute
 
+Example :
+```json
+graphqlUrl: "https://movies.neo4j-graphql.com/",
+graphqlQuery:
+    {
+        actors(options: {limit: 20}) {
+        __typename
+        name
+        acted_in {
+            __typename
+            title
+            genres {
+            __typename
+            name
+            }
+        }
+    }
+}
+```
 
-## Button
+# Styling
+The React component can take a style configuration object - JSON in the following format :
 
-Button is the primary component. It has four possible states.
+Format :
+```json
+style: {
+    configPropertyKey1:{
+        nodeLabel1: "propertyValue1"
+        nodeLabel2: "propertyValue2"
+    }
+}
+```
+
+Example :
+```json
+style: {
+    nodeCaption:{
+        Movie: "title",
+        Actor: "name"
+    }
+}
+```
+
+**Available style configuration properties**
+| Property | ValueType | Description |
+| --- | --- | --- |
+| nodeCaption | string | Object containing the node labels and the corresponding property to display |
+| nodeColor | string | Object containing the node labels and the corresponding color to display, in an HTML compatible format |
+| nodeSize | number | Object containing the node labels and the corresponding size to display |
+| nodeCaptionSize | number | Object containing the node labels and the corresponding font size to display for the node caption |
+
+# Interactions
+The React component can take an interactions configuration object - JSON in the following format :
+
+Format:
+```json
+interactions: {
+    eventName: (e) => callback method
+}
+```
+
+Example:
+```json
+interactions: {
+    onNodeClick: (e) => alert(e.name)
+}
+```
+
+**Available interactions**
+Event name | Description
+--- | ---
+onNodeClick | Triggered when a node is clicked
