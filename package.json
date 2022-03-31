@@ -3,16 +3,18 @@
   "version": "0.0.22",
   "description": "React component for visualizing graph data",
   "private": false,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
     "start": "start-storybook",
-    "build-dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "old-build-dev": "webpack --mode development",
+    "old-build": "webpack --mode production",
+    "clean": "rimraf lib && rimraf es",
+    "build": "npm run clean && cross-env BABEL_ENV=lib babel src/ -x \".ts,.tsx\" --out-dir lib && cross-env BABEL_ENV=es babel src/ -x \".ts,.tsx\" --out-dir es"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,10 @@
     "cytoscape-navigator": "^2.0.1",
     "cytoscape-popper": "^2.0.0",
     "uuid": "^8.3.2"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
   },
   "devDependencies": {
     "react": "^17.0.2",
@@ -65,6 +71,8 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2"
   }
 }
