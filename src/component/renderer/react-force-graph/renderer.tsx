@@ -7,6 +7,7 @@ import ReactDOMServer from 'react-dom/server';
 import useDimensions from "react-cool-dimensions";
 import { mapConfig } from "./config-mapper";
 import './style.css';
+import { LAYOUT_NAMES } from "./config";
 
 const generateTooltip = (value) => {
     const tooltip = <div><table>
@@ -68,6 +69,7 @@ export const ReactForceGraphRenderer = ({
         cooldownTicks={50}
         nodeLabel={node => `<div>${generateTooltip(node)}</div>`}
         linkWidth={3}
+        dagMode={LAYOUT_NAMES[layout]}
         nodeVal={node => node.size}
         onNodeClick={e => interactions && interactions.onNodeClick && interactions.onNodeClick(e)}
         onNodeRightClick={e => interactions && interactions.onNodeRightClick && interactions.onNodeRightClick(e)}
@@ -91,7 +93,6 @@ export const ReactForceGraphRenderer = ({
             ctx.fillStyle = "black";
             ctx.textAlign = "center";
             ctx.fillText(label, node.x, node.y + 1);
-
 
         }}
         graphData={vizData ? vizData : { nodes: [], links: [] }}
