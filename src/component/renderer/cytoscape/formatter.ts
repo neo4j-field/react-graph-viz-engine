@@ -21,6 +21,5 @@ export function formatData(data: [GraphNode[], GraphEdge[]]): object {
         //@ts-ignore
         elements["edges"].push({ data: element })
     });
-    console.log(elements)
     return elements
 }

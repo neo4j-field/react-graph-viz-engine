@@ -18,7 +18,7 @@ export function mapConfig(config: object) {
                     return {
                         selector: 'node[label="' + label + '"]',
                         style: {
-                            'background-color': config[key][label]
+                            'background-color': getOrDeriveValue(config[key][label])
                         }
                     }
                 })
@@ -27,8 +27,8 @@ export function mapConfig(config: object) {
                     return {
                         selector: 'node[label="' + label + '"]',
                         style: {
-                            'width': config[key][label],
-                            'height': config[key][label]
+                            'width': getOrDeriveValue(config[key][label]),
+                            'height': getOrDeriveValue(config[key][label])
                         }
                     }
                 })
@@ -37,13 +37,12 @@ export function mapConfig(config: object) {
                     return {
                         selector: 'node[label="' + label + '"]',
                         style: {
-                            'font-size': config[key][label]
+                            'font-size': getOrDeriveValue(config[key][label])
                         }
                     }
                 })
         }
     })
-
     return [
         {
             selector: 'node[title]',
@@ -65,4 +64,11 @@ export function mapConfig(config: object) {
                 "text-halign": "center"
             }
         }]
+}
+
+function getOrDeriveValue(value){
+    if (value instanceof Function) {
+        return (e) => value(e._private.data);
+    } 
+    return value;
 }
