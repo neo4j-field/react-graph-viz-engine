@@ -27,26 +27,32 @@ export class GraphEdge {
 var nodes: Array<GraphNode>;
 var edges: Array<GraphEdge>;
 
-function parseNodesFromDict(dict: object): GraphNode {
+function parseNodesFromDict(dict: object, schema: object): GraphNode {
+
+    console.log(schema); 
     // Return node
     var node = new GraphNode();
     var _properties = {};
-    // TODO : Make that configurable per-label
-    if ("ID" in dict && dict["ID"] != null) {
-        node.id = dict["ID"];
+    
+    const labelField = schema && schema["nodeLabelField"] ? schema["nodeLabelField"] : "__typename";
+
+    if (labelField in dict && dict[labelField] != null) {
+        node.label = dict[labelField]
+    }
+    const idField = schema && schema["nodeIdField"] ? schema["nodeIdField"] : "ID";
+    if (idField in dict && dict[idField] != null) {
+        node.id = dict[idField];
     } else {
         node.id = JSON.stringify(dict);
     }
-    if ("__typename" in dict && dict["__typename"] != null) {
-        node.label = dict["__typename"]
-    }
+
     for (var [_key, _value] of Object.entries(dict)) {
         if (_value != null) {
             // Nested object or list of objects = relationship traversal
             if (Array.isArray(_value) && _value.every(isObj)) {
                 _value.forEach(function (nestedObject) {
                     // Parse node (recursively)
-                    var _node = parseNodesFromDict(nestedObject);
+                    var _node = parseNodesFromDict(nestedObject, schema);
                     // Add relationship, with source and target id
                     edges.push(new GraphEdge(uuidv4(), node.id, _node.id));
                 });
@@ -54,13 +60,13 @@ function parseNodesFromDict(dict: object): GraphNode {
             else if (typeof _value === 'object' && !Array.isArray(_value)) {
                 // TODO = Exclude non-nested objects like date/datetime
                 // Parse node and add it to nodes
-                var _node = parseNodesFromDict(_value);
+                var _node = parseNodesFromDict(_value, schema);
                 // Add relationship, with source and target id
                 edges.push(new GraphEdge(uuidv4(), node.id, _node.id));
             }
             // Node property
             else {
-                if (_key != "ID" && _key != "__typename") {
+                if (_key != idField && _key != labelField) {
                     _properties[_key] = _value;
                 }
             }
@@ -71,7 +77,7 @@ function parseNodesFromDict(dict: object): GraphNode {
     return node;
 }
 
-export function parseData(data: object): [GraphNode[], GraphEdge[]] {
+export function parseData(data: object, schema: object): [GraphNode[], GraphEdge[]] {
     nodes = Array<GraphNode>();
     edges = Array<GraphEdge>();
 
@@ -80,7 +86,7 @@ export function parseData(data: object): [GraphNode[], GraphEdge[]] {
         // Iterate over the top-level nodes
         // @ts-ignore
         value.forEach(function (dict: object) {
-            parseNodesFromDict(dict);
+            parseNodesFromDict(dict, schema);
         });
     }
     return [nodes, edges];

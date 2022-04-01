@@ -1,55 +1,46 @@
-<!-- Custom-MDX-Documentation.mdx -->
+<!-- About.mdx -->
 
-# Replacing DocsPage with custom `MDX` content
+# React Graph Visualization Engine
+This [Storybook](https://storybook.js.org/) contains examples on how to use the **React Graph Visualization Engine** for Neo4j.
 
-This file is a documentation-only `MDX`file to customize Storybook's [DocsPage](https://storybook.js.org/docs/react/writing-docs/docs-page#replacing-docspage).
+Key features of the library include:
+- An easily embeddable React component to render force-directed graphs.
+- Integrated translation into library specific formats from a unified standard (GraphQL).
+- A straightforward way to add (rule-based) styling and interactions to your visualizations.
+- Support for multiple renderers & graph layouts.
+ 
+See also the [Github Repository](https://github.com/neo4j-field/react-graph-viz-engine) for more information, including example code.
 
-It can be further expanded with your own code snippets and include specific information related to your stories.
+## How to use this Storybook
+The sidebar on the left contains various examples on how to use the library.
 
-For example:
+The Storybook provides examples for each of the functionalities this library provides. For each of these examples, you can:
+* Change the config parameters in the **Controls** tab and see how they affect the visualization,
+* Get the corresponding **JSX** definition of the React component in the adjacent panel
+
+![JSX definition in Storybook](https://raw.githubusercontent.com/neo4j-field/react-graph-viz-engine/main/assets/storybook_jsx.png)
+
+After installing the library with `npm install react-graph-viz-engine`, copy-paste the snippet into your code and you're ready to go. 
 
 
-## Button
+## Input data
+There are two ways of providing graph data into the component:
+1. Raw data. JSON-structured data can be passed to the component to render it directly. Make sure that your `data` field is structured in the standard GraphQL return format.  See [Simple Data](?path=/story/examples--simple-data) for an example.
+2. From a GraphQL endpoint directly. You can use the  `graphqlUrl` and `graphqlQuery` fields to specify an endpoint and query, and the component will handle retrieving and parsing the data. See [Live GraphQL Data](?path=/story/examples--live-graph-ql-data) for an example.
 
-Button is the primary component. It has four possible states.
+## Renderers
+one of the main features of this library is a **seamless switch** between different visualization libraries.
+In the current release, two visualization libraries are supported:
+- [cytoscape](https://js.cytoscape.org/)
+- [react-force-graph](https://github.com/vasturiano/react-force-graph)
 
+Change the `renderer` field of the component to switch the underlying graph visualization library.
 
-## With the story title defined
-
-If you included the title in the story's default export, use this approach.
-
-### Primary
-
-<Story id="example-button--primary" />
-
-### Secondary
-
-<Story id="example-button--secondary" />
-
-### Large
-
-<Story id="example-button--large" />
-
-### Small
-
-<Story id="example-button--small" />
-
-## Without the story title defined
-
-If you didn't include the title in the story's default export, use this approach.
-
-### Primary
-
-<Story id="your-directory-button--primary"/>
-
-### Secondary
-
-<Story id="your-directory-button--secondary"/>
-
-### Large
-
-<Story id="your-directory-button--large"/>
-
-### Small
-
-<Story id="your-directory-button--small" />
+## Configurations
+The configurations for the component are described in the attached docs pages for each of the examples.
+- `renderer`:  One of `['cytoscape', 'react-force-graph']`.
+- `layout`: One of `['graph', 'tree']`.
+- `style`: A dictionary with style definitions. See [Simple styling](/?path=/story/examples--simple-styling) and [Rule-based styling](?path=/story/examples--rule-based-styling) for examples.
+- `schema` = A dictionary with schema-mapping configurations. See [Custom schema](?path=/story/examples--custom-schema) for an example.
+- `interactions`: A dictionary with graph interaction methods. See [Interactions](?path=/story/examples--interactions) for an example.
+- `showNavigator`: One of `[true, false]`. Optionally show a navigator window in the visualization (Cytoscape only).

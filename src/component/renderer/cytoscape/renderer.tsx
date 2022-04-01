@@ -18,6 +18,7 @@ var navigator = require('cytoscape-navigator');
 export const CytoScapeRenderer = ({ data = undefined,
     layout = 'graph',
     style = {},
+    schema= {},
     interactions = {},
     showNavigator = false,
     graphqlUrl,
@@ -48,7 +49,7 @@ export const CytoScapeRenderer = ({ data = undefined,
         if (data === undefined && graphqlQuery !== undefined && graphqlUrl !== undefined) {
             fetchGraphQLDataJSON(graphqlUrl, graphqlQuery).then(_data => {
                 setDataLoaded(true);
-                var parsedData = parseData(_data);
+                var parsedData = parseData(_data, schema);
                 var formattedData = formatData(parsedData);
                 var eles = cy.add(formattedData);
                 cy.layout({ ...layoutSettings, name: LAYOUT_NAMES[layout] }).run();
@@ -60,7 +61,7 @@ export const CytoScapeRenderer = ({ data = undefined,
             if (dataLoaded == false) {
                 setDataLoaded(true);
             }
-            var parsedData = parseData(data);
+            var parsedData = parseData(data, schema);
             var formattedData = formatData(parsedData);
             var eles = cy.add(formattedData);
             cy.layout({ ...layoutSettings, name: LAYOUT_NAMES[layout] }).run();

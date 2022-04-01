@@ -51,6 +51,69 @@ const SAMPLE_DATA =
    }
 };
 
+
+const SAMPLE_DATA_CUSTOM_LABELS = {
+   "data": {
+     "movies": [
+       {
+         "mylabel": "Movie",
+         "title": "Toy Story",
+         "released": "1995-11-22",
+         "genres": [
+           {
+             "mylabel": "Genre",
+             "name": "Adventure"
+           }
+         ]
+       },
+       {
+         "mylabel": "Movie",
+         "title": "Jumanji",
+         "released": "1995-12-15",
+         "genres": [
+           {
+             "mylabel": "Genre",
+             "name": "Adventure"
+           }
+         ]
+       },
+       {
+         "mylabel": "Movie",
+         "title": "Grumpier Old Men",
+         "released": "1995-12-22",
+         "genres": [
+           {
+             "mylabel": "Genre",
+             "name": "Comedy"
+           }
+         ]
+       },
+       {
+         "mylabel": "Movie",
+         "title": "Waiting to Exhale",
+         "released": "1995-12-22",
+         "genres": [
+           {
+             "mylabel": "Genre",
+             "name": "Romance"
+           }
+         ]
+       },
+       {
+         "mylabel": "Movie",
+         "title": "Father of the Bride Part II",
+         "released": "1995-12-08",
+         "genres": [
+           {
+             "mylabel": "Genre",
+             "name": "Comedy"
+           }
+         ]
+       }
+     ]
+   }
+ }
+
 const GRAPHQL_URL = "https://movies.neo4j-graphql.com/"
 const GRAPHQL_QUERY = `{
    actors(options: {limit: 20}) {
@@ -69,7 +132,7 @@ const GRAPHQL_QUERY = `{
 }`
 
 export default {
-   title: 'Usage',
+   title: 'Examples',
    ...defaultConfig
 };
 
@@ -84,12 +147,13 @@ export const LiveGraphQLData = Template.bind({});
 LiveGraphQLData.args = {
    ...defaultArgs,
    showNavigator: false,
+   renderer: "react-force-graph",
    graphqlUrl: GRAPHQL_URL,
    graphqlQuery: GRAPHQL_QUERY
 };
 
-export const Styling = Template.bind({});
-Styling.args = {
+export const SimpleStyling = Template.bind({});
+SimpleStyling.args = {
    ...defaultArgs,
    style: {
       nodeCaption: {
@@ -103,13 +167,7 @@ Styling.args = {
          Genre: "green"
       },
       nodeSize: {
-         Movie: (movie) => {
-            if (movie.released) {
-               return movie.released.split('-')[0] - 1900
-            } else {
-               return 40;
-            }
-         },
+         Movie: 40,
          Actor: 20,
          Genre: 30
       },
@@ -119,9 +177,67 @@ Styling.args = {
          Genre: 15
       }
    },
-   showNavigator: false,
+   showNavigator: true,
    graphqlUrl: GRAPHQL_URL,
    graphqlQuery: GRAPHQL_QUERY
+};
+
+export const RuleBasedStyling = Template.bind({});
+RuleBasedStyling.args = {
+   ...defaultArgs,
+   style: {
+      nodeCaption: {
+         Movie: "title",
+         Actor: "name",
+         Genre: "name"
+      },
+      nodeColor: {
+         Movie: "green",
+         Actor: "orange",
+         Genre: "blue"
+      },
+      nodeSize: {
+         Movie: (movie) => {
+            if (movie.released) {
+               return movie.released.split('-')[0] - 1900
+            } else {
+               return 40;
+            }
+         },
+         Actor: 15,
+         Genre: 15
+      }
+   },
+   showNavigator: false,
+   graphqlUrl: GRAPHQL_URL,
+   renderer: "react-force-graph",
+   graphqlQuery: GRAPHQL_QUERY
+};
+
+export const TreeLayout = Template.bind({});
+TreeLayout.args = {
+   ...defaultArgs,
+   interactions: {
+
+      onNodeClick: (e) => alert(e.name ? e.name : e.title),
+      onNodeRightClick: (e) => alert('right click')
+   },
+   showNavigator: false,
+   layout: "tree",
+   style: {
+      nodeColor: {
+         Movie: "green",
+         Actor: "green",
+         Genre: "green"
+      },
+      nodeCaptionSize: {
+         Movie: 6,
+         Actor: 15,
+         Genre: 15
+      }
+   },
+   graphqlUrl: GRAPHQL_URL,
+   graphqlQuery: GRAPHQL_QUERY,
 };
 
 export const Interactions = Template.bind({});
@@ -135,4 +251,24 @@ Interactions.args = {
    showNavigator: false,
    graphqlUrl: GRAPHQL_URL,
    graphqlQuery: GRAPHQL_QUERY,
+};
+
+export const CustomSchema = Template.bind({});
+CustomSchema.args = {
+   ...defaultArgs,
+   schema: {
+      nodeLabelField: "mylabel",
+      nodeIdField: {
+         Movie: "title",
+         Genre: "name"
+      },
+   },
+   style: {
+      nodeColor: {
+         Movie: "orange",
+         Genre: (genre) => { return genre.name == "Adventure" ? "green" : "purple"}
+      },
+   },
+   showNavigator: false,
+   data: SAMPLE_DATA_CUSTOM_LABELS
 };

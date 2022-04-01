@@ -27,6 +27,7 @@ export const ReactForceGraphRenderer = ({
     data = undefined,
     layout = 'graph',
     style = {},
+    schema = {},
     interactions = {},
     showNavigator = false,
     graphqlUrl,
@@ -47,13 +48,13 @@ export const ReactForceGraphRenderer = ({
     if (vizData === undefined) {
         if (data === undefined && graphqlQuery !== undefined && graphqlUrl !== undefined) {
             fetchGraphQLDataJSON(graphqlUrl, graphqlQuery).then(_data => {
-                var parsedData = parseData(_data);
+                var parsedData = parseData(_data, schema);
                 var formattedData = formatData(parsedData);
                 var mappedData = mapConfig(style, formattedData);
                 setVizData(mappedData);
             });
         } else {
-            var parsedData = parseData(data);
+            var parsedData = parseData(data, schema);
             var formattedData = formatData(parsedData);
             var mappedData = mapConfig(style, formattedData);
             setVizData(mappedData);
