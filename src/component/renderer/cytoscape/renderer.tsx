@@ -3,7 +3,7 @@ import { layoutSettings, navigatorSettings } from "./config";
 import { fetchGraphQLDataJSON } from "../../../util/fetch";
 import { formatData } from "./formatter";
 import { parseData } from "../../../util/parser";
-import './style.css';
+// import './style.css';
 import cytoscape from 'cytoscape';
 import euler from 'cytoscape-euler';
 import popper from 'cytoscape-popper';
