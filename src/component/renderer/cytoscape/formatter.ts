@@ -21,5 +21,7 @@ export function formatData(data: [GraphNode[], GraphEdge[]]): object {
         //@ts-ignore
         elements["edges"].push({ data: element })
     });
+    // Deduplicate node array based on ID's
+    elements["nodes"] = elements["nodes"].filter((v, i, a) => a.findIndex(v2 => (v2.data.id === v.data.id)) === i)
     return elements
 }

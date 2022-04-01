@@ -10,7 +10,7 @@ Key features:
 React component for visualizing graph data.
 
 ## Getting Started
-**TLDR - Try the [Online Demo](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html)!**
+**TLDR - Try the [Online Demo](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html?path=/docs/about--introduction)!**
 
 This project wraps the library in a Storybook UI. [More information on Storybook here](https://storybook.js.org/).
 
@@ -59,7 +59,7 @@ return <GraphVisualization
 }
 ```
 
-The [Storybook](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html) contains examples on what to use in the fields of the GraphVisualization component. 
+The [Storybook](https://react-graph-viz-engine.s3.us-west-1.amazonaws.com/index.html?path=/docs/about--introduction) contains examples on what to use in the fields of the GraphVisualization component. 
 
 
 ## Extending the library

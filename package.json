@@ -1,6 +1,6 @@
 {
   "name": "react-graph-viz-engine",
-  "version": "0.0.35",
+  "version": "0.1.0",
   "description": "React component for visualizing graph data",
   "private": false,
   "main": "lib/index.js",

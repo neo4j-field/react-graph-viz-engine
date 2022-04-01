@@ -1,10 +1,6 @@
 <!-- Graph.mdx -->
 
-# Compatible visualization libraries
-* cytoscape.js
-* react-force-graph.js
-
-# Plain data
+# Simple data
 The data format expected by the component is a JSON object and is based on the GraphQL response format sent by the Neo4j GraphQL library.
 
 Example :
@@ -50,7 +46,7 @@ graphqlQuery:
 }
 ```
 
-# Styling
+# Basic Styling
 The React component can take a style configuration object - JSON in the following format :
 
 Format :
@@ -82,6 +78,47 @@ style: {
 | nodeSize | number | Object containing the node labels and the corresponding size to display |
 | nodeCaptionSize | number | Object containing the node labels and the corresponding font size to display for the node caption |
 
+
+# Rule-based Styling
+Pass a function as a value to the styling configuration to enable rule based styling.
+
+Format :
+```json
+style: {
+    configPropertyKey1:{
+        nodeLabel1: (node) => { return node.abc }
+        nodeLabel2: (node) => { return node.xyz }
+    }
+}
+```
+
+Example:
+```json
+style: {
+      nodeSize: {
+         Movie: (movie) => {
+            if (movie.released) {
+               return movie.released.split('-')[0] - 1900
+            } else {
+               return 40;
+            }
+         }
+      }
+   },
+```
+
+# Layouts
+Pass a string to the component to choose a graph layout.
+
+Examples:
+```json
+layout: "graph"
+```
+
+```json
+layout: "tree"
+```
+
 # Interactions
 The React component can take an interactions configuration object - JSON in the following format :
 
@@ -104,3 +141,19 @@ interactions: {
 | Event name | Description |
 | --- | --- |
 | onNodeClick | Triggered when a node is clicked |
+| onNodeRightClick | Triggered when a node is right-clicked |
+
+# Custom Schema
+To override the automatic schema extraction logic, it is possible to manually pass label/id definitions to the component.
+
+Default configuration:
+
+```json
+schema: {
+    nodeLabelField: "__typename",
+    nodeIdField: {
+        Movie: "ID",
+        Genre: "ID"
+    },
+},
+```

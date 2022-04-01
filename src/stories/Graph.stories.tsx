@@ -131,6 +131,22 @@ const GRAPHQL_QUERY = `{
    }
 }`
 
+const GRAPHQL_QUERY_TREE = `{
+   actors(options: {limit: 1}) {
+     __typename
+     name
+     acted_in {
+       __typename
+       title
+       released
+       genres {
+         __typename
+         name
+       }
+     }
+   }
+}`
+
 export default {
    title: 'Examples',
    ...defaultConfig
@@ -139,7 +155,6 @@ export default {
 export const SimpleData = Template.bind({});
 SimpleData.args = {
    ...defaultArgs,
-   showNavigator: true,
    data: SAMPLE_DATA
 };
 
@@ -152,8 +167,8 @@ LiveGraphQLData.args = {
    graphqlQuery: GRAPHQL_QUERY
 };
 
-export const SimpleStyling = Template.bind({});
-SimpleStyling.args = {
+export const BasicStyling = Template.bind({});
+BasicStyling.args = {
    ...defaultArgs,
    style: {
       nodeCaption: {
@@ -217,34 +232,30 @@ RuleBasedStyling.args = {
 export const TreeLayout = Template.bind({});
 TreeLayout.args = {
    ...defaultArgs,
-   interactions: {
-
-      onNodeClick: (e) => alert(e.name ? e.name : e.title),
-      onNodeRightClick: (e) => alert('right click')
-   },
    showNavigator: false,
    layout: "tree",
    style: {
       nodeColor: {
-         Movie: "green",
-         Actor: "green",
-         Genre: "green"
+         Movie: "green"
       },
       nodeCaptionSize: {
-         Movie: 6,
-         Actor: 15,
-         Genre: 15
+         Movie: 10,
       }
    },
+   schema: {
+      nodeLabelField: "__typename",
+      nodeIdField: {
+         Movie: "title"
+      },
+   },
    graphqlUrl: GRAPHQL_URL,
-   graphqlQuery: GRAPHQL_QUERY,
+   graphqlQuery: GRAPHQL_QUERY_TREE,
 };
 
 export const Interactions = Template.bind({});
 Interactions.args = {
    ...defaultArgs,
    interactions: {
-
       onNodeClick: (e) => alert(e.name ? e.name : e.title),
       onNodeRightClick: (e) => alert('right click')
    },

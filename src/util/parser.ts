@@ -28,8 +28,6 @@ var nodes: Array<GraphNode>;
 var edges: Array<GraphEdge>;
 
 function parseNodesFromDict(dict: object, schema: object): GraphNode {
-
-    console.log(schema); 
     // Return node
     var node = new GraphNode();
     var _properties = {};
@@ -39,7 +37,7 @@ function parseNodesFromDict(dict: object, schema: object): GraphNode {
     if (labelField in dict && dict[labelField] != null) {
         node.label = dict[labelField]
     }
-    const idField = schema && schema["nodeIdField"] ? schema["nodeIdField"] : "ID";
+    const idField = schema && schema["nodeIdField"] && schema["nodeIdField"][node.label] ? schema["nodeIdField"][node.label] : "ID";
     if (idField in dict && dict[idField] != null) {
         node.id = dict[idField];
     } else {
@@ -66,7 +64,7 @@ function parseNodesFromDict(dict: object, schema: object): GraphNode {
             }
             // Node property
             else {
-                if (_key != idField && _key != labelField) {
+                if ( _key != labelField) {
                     _properties[_key] = _value;
                 }
             }
