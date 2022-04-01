@@ -1,21 +1,25 @@
 {
   "name": "react-graph-viz-engine",
-  "version": "0.0.22",
+  "version": "0.0.35",
   "description": "React component for visualizing graph data",
   "private": false,
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
-    "dist",
-    "README.md"
+    "es",
+    "lib",
+    "README.md",
+    "node_modules",
+    "es/*.css",
+    "lib/*.css"
   ],
   "scripts": {
     "start": "start-storybook",
-    "old-build-dev": "webpack --mode development",
-    "old-build": "webpack --mode production",
-    "clean": "rimraf lib && rimraf es",
-    "build": "npm run clean && cross-env BABEL_ENV=lib babel src/ -x \".ts,.tsx\" --out-dir lib && cross-env BABEL_ENV=es babel src/ -x \".ts,.tsx\" --out-dir es"
+    "clean": "rm -rf lib && rm -rf es",
+    "build": "npm run clean && cross-env BABEL_ENV=lib babel src/ -x \".ts,.tsx\" --out-dir lib && cross-env BABEL_ENV=es babel src/ -x \".ts,.tsx\" --out-dir es && cp src/component/renderer/cytoscape/style.css es/component/renderer/cytoscape/style.css && cp src/component/renderer/cytoscape/style.css lib/component/renderer/cytoscape/style.css && cp src/component/renderer/react-force-graph/style.css es/component/renderer/react-force-graph/style.css && cp src/component/renderer/react-force-graph/style.css lib/component/renderer/react-force-graph/style.css"
   },
+
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neo4j-field/react-graph-viz-engine.git"
@@ -37,6 +41,8 @@
     "cytoscape-euler": "^1.2.2",
     "cytoscape-navigator": "^2.0.1",
     "cytoscape-popper": "^2.0.0",
+    "react-cool-dimensions": "^2.0.7",
+    "react-force-graph": "^1.41.12",
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
@@ -44,11 +50,6 @@
     "react-dom": ">=17"
   },
   "devDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-cool-dimensions": "^2.0.7",
-    "react-force-graph": "^1.41.12",
-    "react-markdown": "^8.0.1",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.17.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
@@ -62,17 +63,19 @@
     "@storybook/react": "^6.4.19",
     "babel-loader": "^8.2.4",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "node-sass": "^7.0.1",
     "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
     "sass-loader": "^12.6.0",
     "source-map-loader": "^3.0.1",
     "storybook-addon-jsx": "^7.3.14",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",
-    "webpack-node-externals": "^3.0.0",
-    "cross-env": "^7.0.3",
-    "rimraf": "^3.0.2"
+    "webpack-node-externals": "^3.0.0"
   }
 }

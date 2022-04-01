@@ -6,7 +6,7 @@ import { parseData } from "../../../util/parser";
 import ReactDOMServer from 'react-dom/server';
 import useDimensions from "react-cool-dimensions";
 import { mapConfig } from "./config-mapper";
-// import './style.css';
+import './style.css';
 import { LAYOUT_NAMES } from "./config";
 
 const generateTooltip = (value) => {

@@ -20,6 +20,16 @@ The Storybook provides examples for each of the functionalities this library pro
 
 ![JSX definition in Storybook](assets/storybook_jsx.png)
 
+## Run the storybook locally
+To run the storybook on a local machine, clone the repo. Then:
+
+```
+yarn install
+yarn start
+```
+
+A web browser will open with the storybook definitions for the component.
+
 ## Using the component in your own apps
 To use this component in your own React app, first install the library:
 ```
@@ -60,6 +70,7 @@ After cloning this repository, install and run the storybook:
 ```
 yarn install
 yarn start
+# yarn build
 ```
 
 Each component (`src/component/renderer/`) should contain the following five files:
